@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+<h1>Collection Index: {{ name }}</h1>
+
+<ul>
+{% for obj in resource.contents() %}
+    <li>{{ obj }}
+{% endfor %}
+</li>
+
+{% endblock %}

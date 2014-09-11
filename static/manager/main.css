@@ -1,0 +1,153 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #F5F5F6;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    padding-top: 140px;
+    background-color: #1b242d;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 178px;
+    border-right: 2px solid #fafafa;
+    background: #1b242d url('sun.png') no-repeat top center;
+    font-family: Raleway;
+}
+
+h1, h2 {
+    background-color: #293540;
+    color: #aaa;
+    margin: 0px 0px 0px;
+    padding: 12px 0px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+section {
+    width: 500px;
+    background-color: #fafafa;
+    margin: 0;
+    top: 0px;
+    bottom: 0px;
+    left: 180px;
+    position: fixed;
+    border-right: 1px solid #f0f0f0;
+}
+
+section h2 {
+    background-color: #f0f0f0;
+    color: #1f2831;
+    text-align: left;
+    padding: 12px;
+    font-family: Raleway;
+    text-transform: uppercase;
+}
+
+section > .content {
+    overflow: auto;
+    position: absolute;
+    bottom: 0;
+    top: 45px;
+    left: 0;
+    right: 0;
+}
+
+section.hasActions > .content {
+    top: 62px;
+}
+
+section .actions {
+    background-color: #f0f0f0;
+    margin-top: -8px;
+    padding: 2px 2px 2px 12px;
+}
+
+section .actions a {
+    padding: 5px 8px 4px 2px;
+    font-size: 14px;
+    color: #888;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: lowercase;
+    border: 1px solid transparent;
+    font-family: Raleway;
+}
+
+section .actions a:before {
+    font-size: 12px;
+}
+
+section .actions a:hover {
+    background-color: #364f69;
+    color: white;
+}
+
+nav a {
+    display: block;
+    padding: 6px 4px;
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+nav a.selected {
+    background-color: #293540;
+}
+
+nav a:hover {
+    background-color: #364f69;
+    color: white;
+}
+
+
+nav a.selected:after {
+    content: " ";
+    width: 0; 
+    height: 0; 
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent; 
+    border-right: 8px solid #fafafa; 
+    float: right;
+    margin-right: -4px;
+    margin-top: 1px;
+}
+
+.item {
+    padding: 4px 6px;
+    font-size: 14px;
+    color: #666;
+    border-bottom: 2px solid white;
+    clear: both;
+}
+
+.item h3 {
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+.item .meta > div {
+    font-size: 10px;
+}
+
+.item dl {
+    font-size: 12px;
+    margin: 4px;
+}
+
+.item dt {
+    float: left;
+    width: 100px;
+}
+
+.event .utc {
+    float: right;
+    margin-top: -11px;
+}

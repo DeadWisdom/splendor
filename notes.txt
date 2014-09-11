@@ -1,0 +1,232 @@
+Object Layers
+    - Flask / Web views     | HTTP realm
+    - Rest API              | Splendor realm
+    - Data Backend          | Database / ORM realm 
+
+Collection:
+    A group of rest objects.
+    
+
+
+'/users': 'UserCollection'
+'/users/24': 
+
+'/users'
+o = UserCollection()
+return o.method('get')
+
+'/users/24'
+o = UserCollection()
+return o.method('get')
+
+'/users/24/edit'
+o = UserCollection()
+return o.method('get', '24/edit')
+    | o, rest = self.sub('24/edit')
+    | return o.method('get', rest)
+        | o, rest = self.sub('edit', '')
+        | return o.method('get')
+
+
+callable(method, path=None, context=None)
+
+
+=== Goal ===
+    A web framework for modern development
+
+    Must include:
+        - Build on Flask for all the basics
+        - Asset management
+        - RESTish resource types as the primary object
+        - Datastorage independant
+        - Easily scalable
+        - Multi-process/server event system
+        - Publish / subscriber model
+        - Websocket / Polling
+        - Task scheduling / monitoring 
+        - Command management
+
+
+{
+    'fields': {
+
+    },
+    'route': {
+        'logout': 'auth.logout',
+        'login': 'auth.login',
+        'profile': 'auth.profile',
+    },
+    'audit': [
+        'is'
+    ]
+}
+
+
+UserFace.build()
+
+
+UserFace = ResourceType({
+    'name': 'user',
+    'fields': get_fields_from_model(User),
+    'processors': [
+        ('put', 'user_put'),
+        ('patch', 'user_patch'),
+        ('get', 'user_find'),
+        ('delete', 'user_delete'),
+    ],
+    'filters': [
+        ('*', 'is_user_or_admin'),
+    ],
+    'templates': {
+        'html': 'user/profile.html',
+    },
+    'paths': [
+        ('/edit', 'get_user_edit'),
+        ('/password', 'PUT', 'set_user_password'),
+    ],
+    'collection': [
+        ('/edit', 'UserForm'),
+        ('/password', 'UserPassword'),
+    ]
+})
+
+UserCollection = CollectionType({
+    'name': 'user-collection',
+    'filters': [
+        ('*', 'is_admin'),
+    ],
+    'templates': {
+        'html': 'user/listing.html',
+    }
+})
+
+UserCollection = ResourceType({
+    'name': 'user-collection',
+    'processors': [
+        ('post', 'user_create'),
+        ('get', 'user_list')
+    ],
+    'filters': [
+        ('*', 'is_admin'),
+    ],
+    'templates': {
+        'html': 'user/listing.html',
+    }
+})
+
+
+ResourceType({
+    'name': '',
+    'fields': [],
+    'processors': [],
+    'filters': [],
+    'templates': [],
+    'actions': [],
+    'marshals': [],
+    'storage': [],
+    'forms': []
+})
+
+CollectionResource({
+    'subtypes': ['some-type'],
+})
+
+
+processors = {}
+filters = {}
+marshals = {}
+
+
+@processor("")
+def ...
+
+
+@filter("")
+def ...
+
+
+@marshal("simple-json")
+
+
+AuthenticationResource(Resource):
+    name = 'authentication'
+    allow = ['get', 'post', 'delete']
+    filters = [
+        ('post', 'is-owner')
+    ]
+    processors = [
+        ('post', 'auth-login'),
+        ('delete', 'auth-logout')
+    ]
+    templates = [
+        'html': 'auth/login.html',
+        'html': 'auth/login.html',
+    ]
+
+
+        'text/html': HtmlMarshal,
+        'text/plain': TextMarshal,
+        'application/xml': XmlMarshal,
+        'application/json': JsonMarshal,
+        'text/javascript': JsonMarshal
+    }
+    templates = {
+        'html': '%(_type)s.html',
+        'xml': '%(_type)s.xml',
+        'text': '%(_type)s.text',
+    }
+    fields = {
+        '_uri': {
+            'type': 'string',
+            'index': 'yes',
+            #'primary_key': True,
+            'analyze': 'not_analyzed',
+        },
+        '_type': {
+            'type': 'string',
+            'index': 'no',
+        }
+    }
+
+
+session_index = {
+    'storage': 'redis',
+    'type': 'hash',
+    'key': lambda x: x['hash'],
+    'redis_key': 'sessions',
+}
+
+
+class Session(Resource):
+    name = 'session'
+    fields = [
+        {'name': '_hash', 'type': 'string', 'index': session_index},
+    ]
+    allow = ['get', 'post', 'delete']
+    routes = [
+        ('/login', 'login'),
+        ('/logout', 'logout'),
+    ]
+
+
+class SessionCollection(Resource):
+    @route('/login', methods=['get', 'post'])
+    def login(self):
+        pass
+
+    @route('/', methods=['get']):
+        pass
+
+    
+
+return render(resource, templates = [
+    'html': 'session/login.html'
+])
+
+
+
+
+'/auth/?method=delete'
+
+
+SESSION_RESOURCE = 'session'

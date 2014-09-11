@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Splendor - Manager</title>
+
+    <script type="text/javascript">
+        window.SPLENDOR_NAMESPACE = "{{ SPLENDOR_NAMESPACE }}";
+    </script>
+
+    {% assets filters="closure_js", output="_manager.js",
+        "lib/jquery.js", "lib/jquery.color.js", "lib/history.js", "lib/moment.js", "lib/socket.io.js", "lib/_class.js", "lib/splendor.js",
+        "manager/main.js", "manager/panel.js", "manager/nav.js", "manager/root.js", "manager/history.js" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+
+    {% assets filters="cssmin", output="_style.css", "manager/main.css" %}
+        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+    {% endassets %}
+
+    <link rel="stylesheet" type="text/css" href="/static/manager/fontello/css/fontello.css">
+</head>
+<body>
+    <nav>
+        <a href="root" class="selected"><i class="icon-home"></i>Root</a>
+        <a href="settings"><i class="icon-cog"></i>Settings</a>
+        <a href="history"><i class="icon-clock"></i>History</a>
+        <a href="jobs"><i class="icon-flash"></i>Jobs</a>
+        <a href="lib"><i class="icon-book"></i>Lib</a>
+        <a href="docs"><i class="icon-help-circled"></i>Docs</a>
+    </nav>
+
+    <section class="prototype">
+        <h2 class="title"></h2>
+        <div class="actions">
+            <a href="#" class="button"></a>
+        </div>
+        <div class="content"></div>
+    </section>
+
+    <div class="route item prototype">
+        <h3 class="url"></h3>
+        <div class="content">
+            <dl class="data"></dl>
+        </div>
+    </div>
+
+    <div class="event item prototype">
+        <h3 class="uri"></h3>
+        <div class="content">
+            <div class="data"></div>
+        </div>
+        <div class="meta">
+            <div class="action"></div>
+            <div class="utc"><abbr title="" class="ago"></abbr></div>
+        </div>
+    </section>
+</body>
+</html>
