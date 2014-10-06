@@ -8,7 +8,6 @@ from geventwebsocket import WebSocketError
 monkey.patch_all()
 
 
-
 class Manager(Collection):
     template = "manager.html"
 

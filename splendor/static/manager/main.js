@@ -13,6 +13,7 @@ $.fn.manifest = function(fn) {
     if (this.length == 0) {
         return fn();
     }
+    return this;
 }
 
 /*(function() {

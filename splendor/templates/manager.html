@@ -7,15 +7,17 @@
         window.SPLENDOR_NAMESPACE = "{{ SPLENDOR_NAMESPACE }}";
     </script>
 
-    {% assets filters="closure_js", output="_manager.js",
-        "lib/jquery.js", "lib/jquery.color.js", "lib/history.js", "lib/moment.js", "lib/socket.io.js", "lib/_class.js", "lib/splendor.js",
-        "manager/main.js", "manager/panel.js", "manager/nav.js", "manager/root.js", "manager/history.js" %}
+    <!-- 
+        {{ url_for('splendor.worm', filename="lib/jquery.js")}}
+    --> 
+
+
+
+    {% assets "manager" %}
         <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
 
-    {% assets filters="cssmin", output="_style.css", "manager/main.css" %}
-        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
-    {% endassets %}
+    <link rel="stylesheet" type="text/css" href="/splendor/static/manager/main.css">
 
     <link rel="stylesheet" type="text/css" href="/static/manager/fontello/css/fontello.css">
 </head>

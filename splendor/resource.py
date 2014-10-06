@@ -138,6 +138,18 @@ class Resource(object):
     def to_simple(self):
         return self.context
 
+    def setup(self, splendor):
+        pass
+
+    def enable(self):
+        self._enabled = True
+
+    def disable(self):
+        self._enabled = False
+
+    def tick(self):
+        pass
+
 
 
 ### Exceptions ###

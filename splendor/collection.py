@@ -22,7 +22,7 @@ class Collection(Resource):
 class TemplateCollection(Resource):
     def __init__(self, base='', **args):
         self.base = base.split('/')
-        super(TemplateCollection, self).__init__(**args)
+        super(TemplateCollection, self).__init__(base, **args)
 
     def get(self, path):
         return render_template("/".join(self.base + path), resource=self)
@@ -162,5 +162,9 @@ class DocumentCollection(Collection):
     def to_simple(self):
         self.value['_version'] = self.history.get_version()
         return self.value
+
+
+class AssetCollection(Collection):
+    allow = ['get', 'put', 'delete', 'head']
 
 
